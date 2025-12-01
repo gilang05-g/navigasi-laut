@@ -197,7 +197,6 @@ export default function NavigasiLaut() {
             <div className="w-14 h-14 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 flex items-center justify-center rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
               <span className="text-white text-2xl font-bold">BTM</span>
             </div>
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-cyan-400 rounded-full border-2 border-white"></div>
           </div>
           <div>
             <h1 className="text-blue-900 font-bold text-xl tracking-tight">Blue Tide Marine</h1>
