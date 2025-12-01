@@ -137,11 +137,11 @@ export default function NavigasiLaut() {
   }, []);
 
   return (
-    <div className="font-sans bg-gray-50 min-h-screen">
+    <div id="beranda" className="font-sans bg-gray-50 min-h-screen">
       {/* NAVBAR */}
       <nav className="bg-white/95 backdrop-blur-md px-8 md:px-12 py-5 flex justify-between items-center shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center rounded-xl text-white text-2xl font-bold shadow-lg">
+          <div className="w-14 h-12 py-2 px-4 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center rounded-xl text-white text-2xl font-bold shadow-lg">
             BTM
           </div>
           <div>
@@ -151,16 +151,31 @@ export default function NavigasiLaut() {
         </div>
 
         <ul className="flex gap-8 items-center">
-          <li><a href="#beranda" className="text-blue-900 font-semibold hover:text-blue-700 transition-colors">Beranda</a></li>
-          <li><a href="#peta" className="text-gray-600 hover:text-blue-900 transition-colors">Peta Interaktif</a></li>
-          <li><a href="#detail" className="text-gray-600 hover:text-blue-900 transition-colors">Detail Lokasi</a></li>
-          <li><a href="#tentang" className="text-gray-100 hover:text-white bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 p-4 rounded-lg transition-colors">About Us</a></li>
+          <li onClick={() => document.getElementById("beranda").scrollIntoView({ behavior: "smooth" })}
+            className="text-gray-600 hover:text-blue-700 transition-colors cursor-pointer">
+            Beranda
+          </li>
+
+          <li onClick={() => document.getElementById("peta").scrollIntoView({ behavior: "smooth" })}
+            className="text-gray-600 hover:text-blue-900 transition-colors cursor-pointer">
+            Peta Interaktif
+          </li>
+
+          <li onClick={() => document.getElementById("detaillokasi").scrollIntoView({ behavior: "smooth" })}
+            className="text-gray-600 hover:text-blue-900 transition-colors cursor-pointer">
+            Detail Lokasi
+          </li>
+
+          <li onClick={() => document.getElementById("tentang").scrollIntoView({ behavior: "smooth" })}
+            className="text-gray-100 hover:text-white bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 p-4 rounded-lg transition-colors cursor-pointer">
+            About Us
+          </li>
         </ul>
+
       </nav>
 
       {/* HERO SECTION */}
       <section
-        id="beranda"
         className="relative py-20 px-8 flex flex-col items-center justify-center gap-8 bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-700 overflow-hidden"
         style={{
           backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1600&q=80')",
@@ -225,7 +240,7 @@ export default function NavigasiLaut() {
               Apa Itu Pasang Surut ?
             </h2>
 
-            <p className="text-gray-700 text-lg leading-relaxed">
+            <p className="text-gray-700 text-lg leading-relaxed text-justify">
               Pasang surut adalah kondisi fluktuasi pergerakan naik (pasang) dan
               turun (surut) permukaan air laut secara berkala yang disebabkan oleh
               gaya gravitasi bulan dan matahari terhadap massa air laut di bumi.
@@ -261,7 +276,7 @@ export default function NavigasiLaut() {
       </section>
 
       {/* Detail Lokasi */}
-      <section className="py-24 px-8 bg-white">
+      <section id='detaillokasi' className="py-24 px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold mb-4">
@@ -316,11 +331,11 @@ export default function NavigasiLaut() {
                       {location.name}
                     </h3>
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+
                       <p className="text-sm text-gray-600 font-medium">Lat : {location.Lat}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+
                       <p className="text-sm text-gray-600 font-medium">Long : {location.Long}</p>
                     </div>
                   </div>
@@ -543,7 +558,7 @@ export default function NavigasiLaut() {
 
 
       {/* FOOTER */}
-      <footer className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-12 px-8">
+      <footer id='tentang' className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-12 px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-12 h-12 bg-white/20 flex items-center justify-center rounded-xl text-2xl font-bold">
@@ -559,6 +574,11 @@ export default function NavigasiLaut() {
           </p>
           <div className="text-sm text-blue-300">
             © 2025 BlueTideMarine. All rights reserved.
+            <div className="text-sm text-blue-300">Naia Fitri Hidayat 4445220020</div>
+            <div className="text-sm text-blue-300">Yunita Sri Rahmawati 4445220014</div>
+            <div className="text-xs text-blue-=300">Juliana Patrisia 4445220001</div>
+            <div className="text-xs text-blue-=300">Aura Azmi Mutia 4445220032</div>
+            <div className="text-xs text-blue-=300">Muhammad Faizal 4445220028</div>
           </div>
         </div>
       </footer>
