@@ -18,7 +18,7 @@ export default function NavigasiLaut() {
 
 
   useEffect(() => {
-    if (mapRef.current) return; // Prevent duplicate map initialization
+    if (mapRef.current) return;
 
     const map = L.map("map").setView([-5.5, 107], 6);
     mapRef.current = map;
@@ -26,6 +26,22 @@ export default function NavigasiLaut() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(map);
+
+    // Custom SVG icon
+    const locationIcon = L.divIcon({
+      html: `
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" 
+                fill="#ec2626ff" 
+                stroke="#991B1B" 
+                stroke-width="0.5"/>
+        </svg>
+      `,
+      className: 'custom-location-icon',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
 
     const titikLokasi = [
       { coord: [-6.00221793, 106.71675361] },
@@ -35,7 +51,7 @@ export default function NavigasiLaut() {
     ];
 
     titikLokasi.forEach((item) => {
-      L.marker(item.coord)
+      L.marker(item.coord, { icon: locationIcon })
         .addTo(map)
         .bindPopup(`<br>Lat: ${item.coord[0]}<br>Lng: ${item.coord[1]}`);
     });
