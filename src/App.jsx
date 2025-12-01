@@ -7,6 +7,14 @@ export default function NavigasiLaut() {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const mapRef = useRef(null);
+  const [showDetail, setShowDetail] = React.useState(false);
+
+  const [activeLocation, setActiveLocation] = React.useState(null);
+
+  const toggleDetail = (id) => {
+    setActiveLocation(prev => (prev === id ? null : id));
+  };
+
 
 
   useEffect(() => {
@@ -134,11 +142,11 @@ export default function NavigasiLaut() {
       <nav className="bg-white/95 backdrop-blur-md px-8 md:px-12 py-5 flex justify-between items-center shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center rounded-xl text-white text-2xl font-bold shadow-lg">
-            PS
+            BTM
           </div>
           <div>
-            <span className="text-blue-900 font-bold text-xl block leading-none">PASUT</span>
-            <span className="text-xs text-gray-500 font-medium">Tide Prediction System</span>
+            <span className="text-blue-900 font-bold text-xl block leading-none">Blue Tide Marine</span>
+            <span className="text-xs text-gray-500 font-medium">Tide Trend System</span>
           </div>
         </div>
 
@@ -146,7 +154,7 @@ export default function NavigasiLaut() {
           <li><a href="#beranda" className="text-blue-900 font-semibold hover:text-blue-700 transition-colors">Beranda</a></li>
           <li><a href="#peta" className="text-gray-600 hover:text-blue-900 transition-colors">Peta Interaktif</a></li>
           <li><a href="#detail" className="text-gray-600 hover:text-blue-900 transition-colors">Detail Lokasi</a></li>
-          <li><a href="#tentang" className="text-gray-100 hover:text-white bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 p-4 rounded-lg transition-colors">Tentang Kami</a></li>
+          <li><a href="#tentang" className="text-gray-100 hover:text-white bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 p-4 rounded-lg transition-colors">About Us</a></li>
         </ul>
       </nav>
 
@@ -172,11 +180,11 @@ export default function NavigasiLaut() {
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight leading-tight">
             Trend Pasang Surut<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">
-              Kelompok 2
+              Indonesia
             </span>
           </h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-            Akses data trend pasang surut dari Kelompok 2
+            Akses data trend pasang surut
           </p>
         </div>
 
@@ -198,8 +206,41 @@ export default function NavigasiLaut() {
         </div>
       </section>
 
+      {/* P E N D A H U L U A N  */}
+      <section id="pendahuluan" className="py-24 px-8 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+          {/* Image */}
+          <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+            <img
+              src="/laut.jpg"
+              alt="Laut"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="space-y-5">
+            <h2 className="text-4xl font-bold text-blue-900 leading-tight">
+              Apa Itu Pasang Surut ?
+            </h2>
+
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Pasang surut adalah kondisi fluktuasi pergerakan naik (pasang) dan
+              turun (surut) permukaan air laut secara berkala yang disebabkan oleh
+              gaya gravitasi bulan dan matahari terhadap massa air laut di bumi.
+              Gaya pasang surut merupakan hasil dari gaya sentrifugal yang terjadi
+              dalam kurun waktu dua kali setiap hari, sehingga terdapat dua periode.
+              Sehingga terdapat dua periode.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
       {/* PETA INTERAKTIF */}
-      <section id="peta" className="py-24 px-8 bg-gradient-to-b from-white to-gray-50">
+      <section id="peta" className="py-24 px-8 bg-gradient-to-b from-white to-gray-50 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
@@ -209,50 +250,78 @@ export default function NavigasiLaut() {
               Lokasi Pasang Surut
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Jelajahi lokasi-lokasi pasang surut dari Kelompok 2
+              Jelajahi Lokasi Stasiun Pasang Surut Di Indonesia
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 z-10">
             <div id="map" className="w-full h-[550px]"></div>
           </div>
         </div>
       </section>
 
-      {/* LOKASI POPULER */}
+      {/* Detail Lokasi */}
       <section className="py-24 px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold mb-4">
-              ⭐ Pilihan
+              ⭐ Detail Lokasi
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Lokasi Pemilihan data Pasang Surut</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Titik Lokasi Pasang Surut Di Indonesia
+            </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Data trend pasang surut dari berbagai wilayah pesisir yang diakses oleh Kelompok 2
+              Data Trend Pasang Surut Dari Berbagai Wilayah Pesisir
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 z-0">
             {[
-              { name: "Baturusa, Bangka Belitung", status: "Aktif" },
-              { name: "Kuta, Bali", status: "Aktif" },
-              { name: "Muara, Kab.Tangerang", status: "Aktif" },
-              { name: "Sukamaju, Pandeglang", status: "Aktif" }
+              {
+                name: "Baturusa, Bangka Belitung", Lat: "-2.0973",
+                Long: "106.2104", id: "grafik"
+              },
+              {
+                name: "Kuta, Bali", Lat: "-8.731305",
+                Long: "115.163889", id: "grafik"
+              },
+              {
+                name: "Muara, Kab.Tangerang", Lat: "-6.00221793",
+                Long: "106.71675361", id: "grafik"
+              },
+              {
+                name: "Sukamaju, Pandeglang", Lat: "-6.388072",
+                Long: "105.821341", id: "grafik"
+              }
             ].map((location, index) => (
-              <div key={index} className="group bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:-translate-y-2 cursor-pointer">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg">
+              <div
+                key={index}
+                onClick={() =>
+                  document.getElementById(location.id)?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="group bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:-translate-y-2 cursor-pointer"
+              >
+                <div className="flex items-start justify-center gap-4">
+                  <div className="flex justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg">
                     <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
+
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-blue-900 text-lg font-bold mb-2 line-clamp-2 leading-snug">{location.name}</h3>
+                    <h3 className="text-blue-900 text-lg font-bold mb-2 line-clamp-1 leading-snug">
+                      {location.name}
+                    </h3>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-gray-600 font-medium">{location.status} Terpantau</span>
+                      <p className="text-sm text-gray-600 font-medium">Lat : {location.Lat}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <p className="text-sm text-gray-600 font-medium">Long : {location.Long}</p>
                     </div>
                   </div>
                 </div>
@@ -262,99 +331,234 @@ export default function NavigasiLaut() {
         </div>
       </section>
 
-      {/* HALAMAN DETAIL */}
-      <section id="detail" className="py-24 px-8 bg-gradient-to-b from-gray-50 to-white">
+      {/* grafik */}
+      <section id='grafik' className="py-24 px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex items-center gap-2 px-3 py-1 bg-green-100 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-green-800 font-semibold">Live Data</span>
-              </div>
-              <span className="text-sm text-gray-500">Diperbarui setiap 5 menit</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-3">Tanjung Priok, Jakarta</h1>
-            <p className="text-gray-600 text-lg">Data Prediksi Bulanan | 21 November 2025</p>
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-semibold mb-4">
+              📊 Data Grafik Pasang Surut
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Visualisasi Grafik Per Bulan
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Grafik pasang surut berdasarkan data setiap bulan.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Chart */}
-            <div className="lg:col-span-2 bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow">
-              <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Grafik Pasang Surut</h3>
-                  <p className="text-sm text-gray-500">Visualisasi data ketinggian air laut</p>
-                </div>
-                <div className="flex gap-2">
-                  <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-semibold">Hari Ini</span>
-                </div>
-              </div>
-              <canvas ref={chartRef}></canvas>
+          {/* GRID GRAPHIC CARDS */}
+
+          {/* grafik baturasa */}
+          <div className="border rounded-md p-3 shadow-md shadow-blue-100 mb-2">
+            <div id='baturusa' className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-800 p-4">
+                Grafik Pasang Surut di Baturusa, Bangka Belitung tahun 2024
+              </h2>
+
+              <button
+                className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                onClick={() => toggleDetail("baturusa")}
+              >
+                {activeLocation === "baturusa" ? "Tutup Detail" : "Detail Grafik"}
+              </button>
             </div>
 
-            {/* Summary Card */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 p-8 rounded-3xl shadow-xl text-white relative overflow-hidden">
-              {/* Decorative circles */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl"></div>
+            {/* Dropdown Toggle */}
+            {activeLocation === "baturusa" && (
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-500 mt-5"
+              >
+                {[
+                  "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ].map((bulan, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-3xl p-5 shadow-md border border-gray-200 hover:shadow-xl transition-all cursor-pointer group"
+                  >
+                    <div className="h-40 rounded-xl overflow-hidden bg-gray-100 mb-4 flex justify-center items-center">
+                      <img
+                        src={`/${[
+                          "calJan.png", "calFeb.png", "calMar.png", "calApr.png", "calMei.png", "calJun.png",
+                          "calJul.png", "calAgus.png", "calSep.png", "calOkt.png", "calNov.png", "calDes.png"
+                        ][index]}`}
+                        alt={`Grafik Bulan ${bulan}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    </div>
 
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
+                    <h3 className="text-blue-900 font-bold text-lg leading-snug mb-1">
+                      Grafik Bulan {bulan}
+                    </h3>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold">Ringkasan November</h3>
-                    <p className="text-sm text-blue-200">Data Statistik Bulanan</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
-                    <div className="text-sm text-blue-200 mb-2 font-medium">Pasang Tertinggi</div>
-                    <div className="text-4xl font-bold">1.9 m</div>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
-                    <div className="text-sm text-blue-200 mb-2 font-medium">Pasang Terendah</div>
-                    <div className="text-4xl font-bold">0.4 m</div>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
-                    <div className="text-sm text-blue-200 mb-2 font-medium">Pasang Ekstrem</div>
-                    <div className="text-4xl font-bold">3 kali</div>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
-                    <div className="text-sm text-blue-200 mb-2 font-medium">Bulan Penuh</div>
-                    <div className="text-2xl font-bold">18 November</div>
-                  </div>
-                </div>
+                ))}
               </div>
+            )}
+          </div>
+          {/* grafik kuta */}
+          <div className="border rounded-md p-3 shadow-md shadow-blue-100 mb-2">
+            <div id='kuta' className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-800 p-4">
+                Grafik Pasang Surut di Kuta, Bali tahun 2023
+              </h2>
+
+              <button
+                className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                onClick={() => toggleDetail("kuta")}
+              >
+                {activeLocation === "kuta" ? "Tutup Detail" : "Detail Grafik"}
+              </button>
             </div>
+
+            {/* Dropdown Toggle */}
+            {activeLocation === "kuta" && (
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-500 mt-5"
+              >
+                {[
+                  "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ].map((bulan, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-3xl p-5 shadow-md border border-gray-200 hover:shadow-xl transition-all cursor-pointer group"
+                  >
+                    <div className="h-40 rounded-xl overflow-hidden bg-gray-100 mb-4 flex justify-center items-center">
+                      <img
+                        src={`/${[
+                          "uraJan.png", "uraFeb.png", "uraMar.png", "uraApr.png", "uraMei.png", "uraJun.png",
+                          "uraJul.png", "uraAgus.png", "uraSep.png", "uraOkt.png", "uraNov.png", "uraDes.png"
+                        ][index]}`}
+                        alt={`Grafik Bulan ${bulan}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+
+                    <h3 className="text-blue-900 font-bold text-lg leading-snug mb-1">
+                      Grafik Bulan {bulan}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* grafik muara */}
+          <div className="border rounded-md p-3 shadow-md shadow-blue-100 mb-2">
+            <div id='muara' className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-800 p-4">
+                Grafik Pasang Surut di Muara, Kab.Tangerang, Banten tahun 2020
+              </h2>
+
+              <button
+                className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                onClick={() => toggleDetail("muara")}
+              >
+                {activeLocation === "muara" ? "Tutup Detail" : "Detail Grafik"}
+              </button>
+            </div>
+
+            {/* Dropdown Toggle */}
+            {activeLocation === "muara" && (
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-500 mt-5"
+              >
+                {[
+                  "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ].map((bulan, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-3xl p-5 shadow-md border border-gray-200 hover:shadow-xl transition-all cursor-pointer group"
+                  >
+                    <div className="h-40 rounded-xl overflow-hidden bg-gray-100 mb-4 flex justify-center items-center">
+                      <img
+                        src={`/${[
+                          "julJan.png", "julFeb.png", "julMar.png", "julApr.png", "julMei.png", "julJun.png",
+                          "julJul.png", "julAgus.png", "julSep.png", "julOkt.png", "julNov.png", "julDes.png"
+                        ][index]}`}
+                        alt={`Grafik Bulan ${bulan}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+
+                    <h3 className="text-blue-900 font-bold text-lg leading-snug mb-1">
+                      Grafik Bulan {bulan}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* grafik sukamaju */}
+          <div className="border rounded-md p-3 shadow-md shadow-blue-100 mb-2">
+            <div id='sukamaju' className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-800 p-4">
+                Grafik Pasang Surut di Sukamaju, Kab.Pandeglang, Banten tahun 2023
+              </h2>
+
+              <button
+                className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                onClick={() => toggleDetail("sukamaju")}
+              >
+                {activeLocation === "sukamaju" ? "Tutup Detail" : "Detail Grafik"}
+              </button>
+            </div>
+
+            {/* Dropdown Toggle */}
+            {activeLocation === "sukamaju" && (
+              <div
+                id="sukamaju"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-500 mt-5"
+              >
+                {[
+                  "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                  "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                ].map((bulan, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-3xl p-5 shadow-md border border-gray-200 hover:shadow-xl transition-all cursor-pointer group"
+                  >
+                    <div className="h-40 rounded-xl overflow-hidden bg-gray-100 mb-4 flex justify-center items-center">
+                      <img
+                        src={`/${[
+                          "yunJanuari.png", "yunFebruari.png", "yunMaret.png", "yunApril.png", "yunMei.png", "yunJuni.png",
+                          "yunJuli.png", "yunAgustus.png", "yunSeptember.png", "yunOktober.png", "yunNovember.png", "yunDesember.png"
+                        ][index]}`}
+                        alt={`Grafik Bulan ${bulan}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+
+                    <h3 className="text-blue-900 font-bold text-lg leading-snug mb-1">
+                      Grafik Bulan {bulan}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
+
+
 
       {/* FOOTER */}
       <footer className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-12 px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-12 h-12 bg-white/20 flex items-center justify-center rounded-xl text-2xl font-bold">
-              PS
+              BTM
             </div>
             <div className="text-left">
-              <div className="text-xl font-bold">PASUT</div>
-              <div className="text-xs text-blue-200">Tide Prediction System</div>
+              <div className="text-xl font-bold">Blue Tide Marine</div>
+              <div className="text-xs text-blue-200">Tide Trend System</div>
             </div>
           </div>
           <p className="text-blue-200 mb-6 max-w-2xl mx-auto">
-            Sistem prediksi pasang surut terpercaya untuk navigasi maritim yang aman dan efisien
+            Sistem trend pasang surut terpercaya untuk navigasi maritim yang aman dan efisien
           </p>
           <div className="text-sm text-blue-300">
-            © 2025 PASUT. All rights reserved.
+            © 2025 BlueTideMarine. All rights reserved.
           </div>
         </div>
       </footer>
