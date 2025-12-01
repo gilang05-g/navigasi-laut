@@ -252,9 +252,6 @@ export default function NavigasiLaut() {
 
         {/* Content */}
         <div className="text-center z-10 max-w-5xl space-y-6">
-          <div className="inline-block px-5 py-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-cyan-300 text-sm font-semibold mb-4">
-            🌊 Sistem Monitoring Pasang Surut Terpercaya
-          </div>
           <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
             Trend Pasang Surut<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-blue-200">
@@ -293,7 +290,7 @@ export default function NavigasiLaut() {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl opacity-20 group-hover:opacity-30 blur-xl transition-all"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
-                  src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+                  src="/laut.jpg"
                   alt="Laut"
                   className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-500"
                 />
