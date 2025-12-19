@@ -263,8 +263,71 @@ export default function NavigasiLaut() {
           </p>
         </div>
 
+        {/* Button navigasi */}
+        <div className="flex flex-wrap gap-3">
+          {/* Button ke grafik */}
+          <button
+            onClick={() =>
+              document.getElementById("grafik")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
+            className="
+      w-40 h-12 px-5 py-2.5
+      text-sm font-medium text-white
+      bg-blue-600
+      rounded-lg
+      shadow-md
+
+      transform
+      transition-all duration-300 ease-out
+      hover:-translate-y-1
+      hover:scale-105
+      hover:bg-blue-700
+      hover:shadow-xl
+
+      active:scale-95
+      focus:outline-none
+      focus:ring-2 focus:ring-blue-400
+    "
+          >
+            Jelajahi Data
+          </button>
+
+          {/* Button ke map interaktif */}
+          <button
+            onClick={() =>
+              document.getElementById("peta")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
+            className="
+      w-40 h-12 px-5 py-2.5
+      text-sm font-medium text-blue-700
+      bg-blue-100
+      rounded-lg
+      shadow-md
+
+      transform
+      transition-all duration-300 ease-out
+      hover:-translate-y-1
+      hover:scale-105
+      hover:bg-blue-200
+      hover:shadow-xl
+
+      active:scale-95
+      focus:outline-none
+      focus:ring-2 focus:ring-blue-300
+    "
+          >
+            Map Interaktif
+          </button>
+        </div>
+
         {/* Search Bar */}
-        <div className="flex bg-white rounded-2xl overflow-hidden w-11/12 max-w-3xl shadow-2xl z-10 hover:shadow-blue-400/30 transition-all duration-300 border border-blue-100">
+        {/* <div className="flex bg-white rounded-2xl overflow-hidden w-11/12 max-w-3xl shadow-2xl z-10 hover:shadow-blue-400/30 transition-all duration-300 border border-blue-100">
           <div className="flex items-center px-6 text-gray-400 bg-gray-50">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -278,7 +341,7 @@ export default function NavigasiLaut() {
           <button className="px-14 py-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl">
             CARI
           </button>
-        </div>
+        </div> */}
       </section>
 
       {/* PENDAHULUAN */}
